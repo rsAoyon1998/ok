@@ -1,78 +1,3 @@
-// import { useState } from 'react';
-
-// function App() {
-//   const [firstName, setFirstName] = useState('');
-//   const [lastName, setLastName] = useState('');
-//   const [date, setDate] = useState('');
-
-//   const [message, setMessage] = useState('');
-
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     var id = ["Paris", "France"];
-    
-//     // setMessage(`Hello ${firstName} ${lastName} ${date}!`);
-//     window.location.href = '/abc/'+ firstName+','+lastName;
-//     setFirstName('');
-//     setLastName('');
-//     setDate('');
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <input
-//         type="text"
-//         id="firstName"
-//         name="firstName"
-//         value={firstName}
-//         placeholder="From"
-//         onChange={(event) =>
-//           setFirstName(event.target.value)
-//         }
-//       />
-
-//       <br />
-//       <br />
-
-//       <input
-//         type="text"
-//         id="lastName"
-//         name="lastName"
-//         value={lastName}
-//         placeholder="To"
-//         onChange={(event) => {
-//           setLastName(event.target.value);
-//         }}
-//       />
-
-//       <br />
-//       <br />
-
-//       <input
-//         type="text"
-//         id="date"
-//         name="date"
-//         value={date}
-//         placeholder="Date"
-//         onChange={(event) =>
-//           setDate(event.target.value)
-//         }
-//       />
-
-//       <button type="submit">Submit</button>
-
-//       <br />
-//       <br />
-
-//       {/* <h2>{message}</h2> */}
-//     </form>
-//   );
-// }
-// export default App
-
-
-
-
 
 
 
@@ -81,7 +6,7 @@ import axios from "axios"
 import React, { useState } from "react"
 import "./App.css"
 
-
+import { useParams } from 'react-router'
 
 function form() {
 
@@ -94,6 +19,9 @@ function form() {
   var result = (hr - Math.floor(hr)) !== 0; 
    
   var result_2 = (min - Math.floor(min)) !== 0; 
+
+  let {id} = useParams();
+
 
 
   const handleSubmit = (event) => {
@@ -117,8 +45,8 @@ function form() {
       alert('Write correct minute')
       }
     else{
-      var abc=[pl,dl,date,hr,min];
-      window.location.href = '/abc/'+ abc;
+      var abc=[pl,dl,date,hr,min,id];
+      window.location.href = '/reservation_second_page/'+ abc;
     }
     
 		

@@ -59,6 +59,8 @@ function form() {
 
 
 <div>
+
+<h1>Reservation List</h1>
 {data.map(item => (
   <li key={item._id}>
 

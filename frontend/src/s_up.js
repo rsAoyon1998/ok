@@ -23,7 +23,7 @@ function form() {
 alert('Incorrect Phone Number')
 
 		}
-		else if(phone.length< 8){
+		else if(pass.length< 8){
 			alert('Password should be at least 8 characters')
 		}
 		else{
@@ -34,7 +34,8 @@ alert('Incorrect Phone Number')
 			  }).then(res=>{
 				if(res.data=="ok"){
 				// alert("Successfully Registered")
-				window.location.href = './log_in';
+				window.location.href = './log_in'
+				// window.location.href = './log_in';
 				}
 			  })
 		  } catch (error) {

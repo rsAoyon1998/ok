@@ -13,8 +13,10 @@ const port = 5000
 const cors = require('cors')
 const multer = require('multer')
 
+
+router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb+srv://rsa12341:p2m6cQ5TRj90HfZN@cluster0.gaxd9p2.mongodb.net/";
+var url = "mongodb+srv://rsa12341:qAo5EN2QoIGBpZBm@cluster0.kgl0odv.mongodb.net/_";
 
 
 
@@ -250,6 +252,35 @@ app.get('/r_data', (req, res) => {
 });
 
 
+
+
+app.get('/user_info', (req, res) => {
+
+  // let {name}=req.body
+
+  // console.log(name)
+ 
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("ok");
+    console.log("Hello")
+    dbo.collection("ok").find({}).toArray(function(err, result) {
+      if (err) throw err;
+      // console.log(result);
+      else{
+      res.send(result);
+      }
+      db.close();
+    });
+  });
+
+
+
+
+
+});
+
+
 app.post("/post_ad", async (req, res) => {
 	let { name } = req.body
     let { email } = req.body
@@ -413,20 +444,18 @@ dbo.collection('ok')
        if(count!=0){
         dbo.collection("ok").findOne({name: france}, function(err, result) {
       
-       
-       
+        
+
+          
     
-   
-      
-      
-      
           if (err) throw err;
           if(result.pass==paris_3){
           console.log(result.pass);
+          console.log(result._id);
           console.log('Done!')
           // res.send({message:"Done!"})
           // lg="log_in";
-          res.json("log_in")
+          res.json(result.name)
           db.close();
           }
           else{
@@ -455,5 +484,138 @@ dbo.collection('ok')
   //   console.log("++++")
   //   res.json("log_in")
   // }
+
+ 
+
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("ok");
+
+    var currentDate = new Date();
+    var myquery = { name: name};
+    var newvalues = { $set: {last_log_in: currentDate } };
+    dbo.collection("ok").updateOne(myquery, newvalues, function(err, res) {
+      if (err) throw err;
+      console.log("1 document updated");
+      db.close();
+    });
+  });
+
+
+
+
+ 
+ 
+
+})
+
+
+
+app.post("/post_update", async (req, res) => {
+  let { name } = req.body
+  let { email } = req.body
+  let { phone } = req.body
+  let { pass } = req.body
+
+let { id } = req.body
+
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("ok");
+  var currentDate = new Date();
+  var myquery = { name: id};
+  var newvalues = { $set: {name: name ,email:email,phone:phone,pass:pass,last_Update: currentDate} };
+  dbo.collection("ok").updateOne(myquery, newvalues, function(err, result) {
+    if (err) throw err;
+    console.log("1 document updated");
+    res.json('ok')
+    db.close();
+  });
+});
+
+
+
+
+// MongoClient.connect(url, function(err, db) {
+//   if (err) throw err;
+//   var dbo = db.db("ok");
+
+//   var currentDate = new Date();
+//   var myquery = { name: name};
+//   var newvalues = { $set: {last_Update: currentDate } };
+//   dbo.collection("ok").updateOne(myquery, newvalues, function(err, res) {
+//     if (err) throw err;
+//     console.log("1 document updated");
+//     db.close();
+//   });
+// });
+
+
+
+
+
+})
+
+
+
+app.get('/know_user_info/:id', (req, res) => {
+
+  // let { id } = req.body
+
+  var abc = req.params['id'] 
+
+  
+
+  console.log(abc)
+ 
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("ok");
+    console.log("Hello")
+    dbo.collection("ok").find({name:abc}).toArray(function(err, result) {
+      if (err) throw err;
+      // console.log(result);
+      else{
+      res.send(result);
+      }
+      db.close();
+    });
+  });
+
+
+
+
+
+});
+
+
+app.get('/know_user_reservation/:id', (req, res) => {
+
+  // let { id } = req.body
+
+  var abc = req.params['id'] 
+
+  
+
+  console.log(abc)
+ 
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("ok");
+    console.log("Hello")
+    dbo.collection("reservation").find({name:abc}).toArray(function(err, result) {
+      if (err) throw err;
+      // console.log(result);
+      else{
+      res.send(result);
+      }
+      db.close();
+    });
+  });
+
+
+
+
 
 })
