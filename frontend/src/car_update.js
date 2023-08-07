@@ -9,23 +9,27 @@ import { useParams } from 'react-router'
 	
 function App() {
   var ok="abc";
-
   if  (localStorage.getItem('user') === null)
   {
     window.location.href = '/log_in/';
   
   }
-
+  
 
   let {id} = useParams();
+
+
+    var nameArr = id.split(',');
+
+    // var abc=nameArr[0]
 
   var abc= localStorage.getItem('user');
 
   const [image, setImage] = useState({ preview: '', data: '' })
   const [status, setStatus] = useState('')
-  const [ name, setName ] = useState("")
-	const [ des, setDes ] = useState("")
-  const [ price, setPrice ] = useState("")
+  const [ name, setName ] = useState(nameArr[0])
+	const [ des, setDes ] = useState(nameArr[1])
+  const [ price, setPrice ] = useState(nameArr[2])
 
   
   const handleSubmit = async (e) => {
@@ -36,7 +40,8 @@ function App() {
     formData.append('des', des)
     formData.append('price', price)
     formData.append('user_name', abc)
-    const response = await fetch('http://localhost:5000/image', {
+    formData.append('u_id', nameArr[4])
+    const response = await fetch('http://localhost:5000/image_update', {
       method: 'POST',
       body: formData
     })
@@ -48,6 +53,7 @@ function App() {
       )
 
     if (response) setStatus(response.statusText)
+    
   }
 
   const handleFileChange = (e) => {
@@ -84,12 +90,14 @@ function App() {
       <input type="text" name='des' value={des} placeholder="Category" onChange={(e) => setDes(e.target.value)} required/>
       <input type="text" name='price' value={price} placeholder="write description" onChange={(e) => setPrice(e.target.value)} required/>
         {/* <input type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required/> */}
-        <input type='file' name='file' onChange={handleFileChange} required></input>
+        <input type='file' name='file' onChange={handleFileChange} ></input>
         {/* <button type='submit'>Submit</button>
          */}
 
          <input type="submit" name="name" placeholder="Message"></input>
       </form>
+
+
       {/* {status && <h4>{status}</h4>} */}
     </div>
     </header>

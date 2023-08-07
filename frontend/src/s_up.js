@@ -43,11 +43,19 @@ alert('Incorrect Phone Number')
 		  }
 	  }
 	}
-  return (
- <header>
 
+
+	const log_in = () => {
     
-
+		window.location.href = '/log_in';
+	   
+	  }
+	
+	  
+	
+	  return (
+		<header>
+		<button onClick={() => log_in()}>Log In</button>
 
 
 

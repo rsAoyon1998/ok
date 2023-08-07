@@ -25,8 +25,15 @@ function form() {
 			  .then(res=>{
 				if(res.data!="not_log_in"){
 				// alert("Successfully Registered")
-				localStorage.setItem('token', res.data.token)
-				window.location.href = '/hompage/'+res.data;
+
+
+
+
+				localStorage.setItem('user', name);
+    window.location.href = '/search/';
+
+				// localStorage.setItem('token', res.data.token)
+				// window.location.href = '/hompage/'+res.data;
 				}
 				
 				if(res.data=="not_log_in"){
@@ -38,11 +45,20 @@ function form() {
 		  }
 	  }
 
-  return (
- <header>
 
+
+
+	  const s_up = () => {
     
-
+		window.location.href = '/';
+	   
+	  }
+	
+	  
+	
+	  return (
+		<header>
+		<button onClick={() => s_up()}>Sign Up</button>
 
 
 

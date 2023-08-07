@@ -94,7 +94,7 @@ a{
 header{
 	width: 100%;
 	height: 100vh;
-	background: linear-gradient(to bottom, rgba(0,0,0,.8), rgba(0,0,0,.5)), url("https://i.pinimg.com/736x/96/dd/29/96dd29563221473b4fd59383cde4d66b.jpg") center no-repeat;
+	background: linear-gradient(to bottom, rgba(0,0,0,.8), rgba(0,0,0,.5)), url("https://www.fastweb.com/uploads/article_photo/photo/2038804/crop635w_Note-Taking.jpg") center no-repeat;
 	background-size: cover;
 	position: relative;
   overflow: hidden;
@@ -123,10 +123,20 @@ header{
     border-radius: 5px;
 }
 
+.padding_class{
+	padding: 220px;
+}
+
+
 .form_text{
    height: 30vh;
    overflow: hidden;
    overflow-y: scroll;
+}
+
+
+.pag_button{
+	padding: 20px;
 }
 
 .box input{
